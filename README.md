@@ -1,11 +1,11 @@
 # NOTES
 STUDY MATERIAL >.&lt;
 
-- [Uncat](#uncat)
+- [Uncat](#uncategorized)
 - [SERVICES](#services)
-- [Tools](#)
-  - [Network Scanning](#)
-    - [NMAP](#)
+- [Tools](#tools)
+  - [Network Scanning](#network-scanning-tools)
+    - [NMAP](#nmap)
   - [WEB DIRECTORY SCANNING](#) 
     - [GOBUSTER](#)
   - []()
