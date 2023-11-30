@@ -51,9 +51,7 @@ STUDY MATERIAL >.&lt;
 + /vda and /vda1 stands for virtual disk and sda and sda1 stands for harddrives
 + /etc -> configuration files are here,
 + network part ->
-  > $cat interfaces
-  > 
-  > all network interfaces are stored here...
+   - ` $cat interfaces ` all network interfaces are stored here...
 + mnt & media - they both mount drives..
 
 
@@ -63,7 +61,7 @@ MY PENTEST CHEAT SHEET AND BASIC KALI SETUP/TROUBLESHOOT COMMANDS
 Linux Tools, Scripts & Services
 
 - Bash Scripts (For CTF)
- > $ python3 -c ‘import pty;pty.spawn(“/bin/bash”)’  → sh to bash shell 
+  ` $ python3 -c ‘import pty;pty.spawn(“/bin/bash”)’ `  → pop sh to bash shell 
 
 - Exploit PATH Hijacking
 ```
@@ -79,10 +77,10 @@ Linux Tools, Scripts & Services
   root
 ```
 
-- Enumeration for SUID files $ find / -user root -perm -4000 -exec ls -ldb {} ; >/tmp/suidfiles
+- Enumeration for SUID files ` $ find / -user root -perm -4000 -exec ls -ldb {} ; >/tmp/suidfiles `
 
-- Enumeration for user executable location $ find / -type d -maxdepth 2 -writable -exec ls -l {} + 2>/dev/null
-
+- Enumeration for user executable location ` $ find / -type d -maxdepth 2 -writable -exec ls -l {} + 2>/dev/null `
+```
 + $ find / -type d -maxdepth 2 -writable -exec ls -l {} 2> + /dev/null (THIS ONE DOSENT WORKS)
   -  / : Scan the entire device
   - -type d : Scan for directories only (No files)
@@ -90,6 +88,7 @@ Linux Tools, Scripts & Services
   - -writable : Check if current user an write in folder
   - -exec : Execute a command on the results returned by find ls
   -l {} + : List the output in long form ( {} is placeholder for the location where result of the find command is substituted. The + at the end is used to terminate the -exec command)
+```
 
 
 + $ python3 -m http.server {port} (ip before port is optional i guess) - host file to download on target system, File should be in the same folder where the hosting service is started
