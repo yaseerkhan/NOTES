@@ -152,31 +152,33 @@ OR
 ### FREERDP
 ` $ xfreerdp ` - microsoft-ds 445 aka remote desktop protocol   
 
-` xfreerdp /v:10.0.0.0 /cert:ignore /u:user`(”Administrator” can be default) `/p:password `(password optional, we can skip this flag)
+` xfreerdp /v:10.0.0.0 /cert:ignore /u:user`(user ”Administrator” can be default) `/p:password `(password optional, we can skip this flag)
 
 
 # Tools
 
 ## Uncategorized Tools
 ### SNMP WALK
-  + $ snmpwalk -v 1 c public 10.10.11.136 - SNMP emumeration tool to get id, pass, etc.
+  ` $ snmpwalk -v 1 c public 10.10.11.136 ` - SNMP emumeration tool to get id, pass, etc.  
 
-### enum4linux
- + $ enum4linux - brute forcing tool get the name of users(maybe for smbclient only?)
- + $ enum4linux -a {IP} (-a to get everything available)
+### enum4linux  
+ + $ enum4linux - brute forcing tool get the name of users(maybe for smbclient only?)  
+ ` $ enum4linux -a {IP} ` (-a to get everything available)  
 
 ## Network Scanning
 ### NMAP    
-+ For a thorough scan of single host: $ nmap -A -p- -v host
+For a thorough scan of single host: `$ nmap -A -p- -v {ip} `  
 
-+ $ nmap -sC -sV -sU -p- 10.0.0.1 -T4 -A -vvv
-   + -T4 is for aggresive time, T5 can be used for insane, T3,T2,T1 are also there but slow
-   + -p- is to scan all ports only without additional information
-   + -sC is used for default script 
-   + -sV is used to detect service information for eg: windows version or version of whatever service is up, etc
-   + -sU for udp port scanning (used when there aren’t any useful ports)
-   + -p add ports to scan ports only separated  by commans. -p 2256,1015,7785 like this. ez hekor
-   + **-sC -sV can take time so only use -p- attribute for fast port scanning. using -sC -sV then scan those individual ports**
+```
+ $ nmap -sC -sV -sU -p- 10.0.0.1 -T4 -A -vvv
+    -T4 is for aggresive time, T5 can be used for insane, T3,T2,T1 are also there but slow
+    -p- is to scan all ports only without additional information
+    -sC is used for default script 
+    -sV is used to detect service information for eg: windows version or version of whatever service is up, etc
+    -sU for udp port scanning (used when there aren’t any useful ports)
+    -p add ports to scan ports only separated  by commans. -p 2256,1015,7785 like this. ez hekor
+    -sC -sV can take time so only use -p- attribute for fast port scanning. using -sC -sV then scan those individual ports
+```
 
 ## WEB DIRECTORY SCANNING
 ### GOBUSTER
