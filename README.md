@@ -171,23 +171,23 @@ For a thorough scan of single host: `$ nmap -A -p- -v {ip} `
 
 
 ` $ nmap -sC -sV -sU -p- 10.0.0.1 -T4 -A -vvv `  
-   -T4 is for aggresive time, T5 can be used for insane, T3,T2,T1 are also there but slow  
-   -p- is to scan all ports only without additional information  
-   -sC is used for default script  
-   -sV is used to detect service information for eg: windows version or version of whatever service is up, etc  
-   -sU for udp port scanning (used when there aren’t any useful ports)  
-   -p add ports to scan ports only separated  by commans. -p 2256,1015,7785 like this. ez hekor  
-   -sC -sV can take time so only use -p- attribute for fast port scanning. using -sC -sV then scan those individual ports  
+   `-T4` is for aggresive time, T5 can be used for insane, T3,T2,T1 are also there but slow  
+   `-p-` is to scan all ports only without additional information  
+   `-sC` is used for default script  
+   `-sV` is used to detect service information for eg: windows version or version of whatever service is up, etc  
+   `-sU` for udp port scanning (used when there aren’t any useful ports)  
+   `-p` add ports to scan ports only separated  by commans. -p 2256,1015,7785 like this. ez hekor  
+   `-sC -sV` can take time so only use `-p-` attribute for fast port scanning. using -`sC -sV` then scan those individual ports  
 
 
 ## WEB DIRECTORY SCANNING
 ### GOBUSTER
 ` $ gobuster dir -u http://10.0.0.1:8080 -w /directory-list-lowercase-2.3-medium.txt -x php,html` (port not necessary)  
-  - dir : Perform directory brute forcing ( there are other methods aswell)  
-  - -u : URL/IP of Target  
-  - -x : Extensions of files to find  
-  - -w : Wordlist  
-  - -t {100} : Threads (Used for parallelization), higher the number of threads more the chance of triggering DDOS protection as multiple requests are made within seconds  
+  - `dir` : Perform directory brute forcing ( there are other methods aswell)  
+  - `-u` : URL/IP of Target  
+  - `-x` : Extensions of files to find  
+  - `-w` : Wordlist  
+  - `-t {100}` : Threads (Used for parallelization), higher the number of threads more the chance of triggering DDOS protection as multiple requests are made within seconds  
   
 ### FFUZ
 ` $ ffuz -w /wordlist.txt -u http://ip/FUZZ `  
