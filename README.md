@@ -182,57 +182,58 @@ For a thorough scan of single host: `$ nmap -A -p- -v {ip} `
 
 ## WEB DIRECTORY SCANNING
 ### GOBUSTER
-+ $ gobuster dir -u http://10.0.0.1:8080 -w /directory-list-lowercase-2.3-medium.txt -x php,html (port not necessary)
-  - dir : Perform directory brute forcing ( there are other methods aswell)
-  - -u : URL/IP of Target
-  - -x : Extensions of files to find
-  - -w : Wordlist
-  - -t {100} : Threads (Used for parallelization), higher the number of threads more the chance of triggering DDOS protection as multiple requests are made within seconds
+` $ gobuster dir -u http://10.0.0.1:8080 -w /directory-list-lowercase-2.3-medium.txt -x php,html` (port not necessary)  
+  - dir : Perform directory brute forcing ( there are other methods aswell)  
+  - -u : URL/IP of Target  
+  - -x : Extensions of files to find  
+  - -w : Wordlist  
+  - -t {100} : Threads (Used for parallelization), higher the number of threads more the chance of triggering DDOS protection as multiple requests are made within seconds  
   
 ### FFUZ
-+ $ ffuz -w /wordlist.txt -u http://ip/FUZZ
+` $ ffuz -w /wordlist.txt -u http://ip/FUZZ `  
 
 # Extraction and Compression
-1. Using gzip utility ( for only .gz associated files)
-  + $ gzip {filename} - to compress a file or folder
-  + $ gunzip {filename} - to decompress/ unzip
+1. Using gzip utility ( for only .gz associated files)  
+  ` $ gzip {filename} ` - to compress a file or folder  
+  ` $ gunzip {filename} ` - to decompress/ unzip  
 
-2. Using tar utility
-+ $ tar -xvzf {file}
-  - -x : instruct tar to extract the files from the zipped file
-  - -v : means verbose, or to list out the files that are being extracted from the zip
-  - -z : instructs the tar to decompress the files
-  - -f : tells tar the file name you want it to work on
+2. Using tar utility  
+` $ tar -xvzf {file} `  
+  - -x : instruct tar to extract the files from the zipped file  
+  - -v : means verbose, or to list out the files that are being extracted from the zip  
+  - -z : instructs the tar to decompress the files  
+  - -f : tells tar the file name you want it to work on  
 
-+ To list the contents of .tar before extracting it
-  - $ tar -tzf {file}
+ To list the contents of .tar before extracting it  
+  ` $ tar -tzf {file} ` 
 
-+ To instruct the tar to put the extracted unzipped files into specific directory 
-  - $ tar -xvzf {file} -c /put/your/directory/here
+ To instruct the tar to put the extracted unzipped files into specific directory   
+  ` $ tar -xvzf {file} -c /put/your/directory/here `  
 
 # Database
 ## MySql
- + $ mysql -h {ip} -P port (-P:port optional)
-  -default user: root password maybe root aswell
+ ` $ mysql -h {ip} -P port ` (-P:port optional)  
+    default user: root,  
+    password maybe root aswell  
     ```
-    SHOW databases;              : Prints out the databases we can access.
-    USE {database_name};         : Set to use the database named {database_name}.
-    SHOW tables;                 : Prints out the available tables inside the currentdatabase.
-    SELECT * FROM {table_name};  : Prints out all the data from the table {table_name}.
+    SHOW databases;              : Prints out the databases we can access.  
+    USE {database_name};         : Set to use the database named {database_name}.  
+    SHOW tables;                 : Prints out the available tables inside the currentdatabase.  
+    SELECT * FROM {table_name};  : Prints out all the data from the table {table_name}.  
     ```
 
 ## SQLMAP
-+ sqlmap -u ‘URL’ : to check a specific URL or a page for SQL INJECTION
-+ sqlmap -u ‘URL’ -b : to grab the banner.
-+ Check “sqlmap -h” for more options like dumping database name, tables, columns and entries etc.
+` sqlmap -u ‘URL’ ` : to check a specific URL or a page for SQL INJECTION  
+` sqlmap -u ‘URL’ -b `: to grab the banner.  
++ Check “`sqlmap -h`” for more options like dumping database name, tables, columns and entries etc.  
 
 ## Redis
 `$ redis-cli -h {ip}`  
   -h : to define the host  
   -p : can be used to provide the password  
 
-+ Basic commands after connecting to the redis server successfully
-  ` $ info ` : this will provide information about the redis server
++ Basic commands after connecting to the redis server successfully  
+  ` $ info ` : this will provide information about the redis server  
 
 > [!NOTE]
 > in the output the last section i.e “# Keyspace” will contain the information about the database with their index number and keys for that database, keys are basically no. of records maybe( or we can say file which have information? ) 
@@ -309,7 +310,7 @@ In summary, XSS is a critical web security concern that can have severe conseque
 > '--' means comment so it will ignore anything after that
 
 Two major types: 
-1.Error based and 2.Blind SQL INJECTION
+1.Error based and 2.Blind SQL INJECTION  
 
 1. ERROR BASED
 + Error based are not usual anymore due to new updates libraries but blind injections are likely to be found.
@@ -355,7 +356,7 @@ here first 1 is to tell starting at the first point value and second 1 is for fi
 
 --------------------
 
-IF we put negative(-) in the with the id we will get what placeholders we are providing
+IF we put negative(-) in the with the id we will get the placeholders structure which we have to put data in 
 
 `eg: id=-2 union select 1,2,3,4;-- `
 
@@ -381,27 +382,23 @@ THIS IS JUST CHANGING THE ID's AND STUFFS IN URL TO GET OTHER ITEM/OBJECT
 
 ## LFD
 
-```
-../../../../../etc/passwd - ../ can be added as much time as we like bcos it is to send us to the root directory of that user and after that we can add /etc/passwd to show the users. We can not put it anywhere but in the place of a retrieval of file.
 
-> Null Byte Injection
+`../../../../../etc/passwd` - `../` can be added as much time as we like bcos it is to send us to the root directory of that user and after that we can add /etc/passwd to show the users. We can not put it anywhere but in the place of a retrieval of file.  
 
-%00 OR ? - to ignore the remainder of the string but we have to deal with other limitations or filtering in place
+Null Byte Injection  
 
-> We might need to escape filtration:
+`%00` OR `?` - to ignore the remainder of the string but we have to deal with other limitations or filtering in place  
 
-encoding for . = %2e
+We might need to escape filtration:  
+encoding for `.` = `%2e`  
+encoding for `/` = `%2f`  
 
-encoding for / = %2f
+ `../` = `%2e%2e%2f`  
 
- ../ = %2e%2e%2f
+Bypass filter for `../`  
 
-Bypass filter for “../”
-
-.././ = ../
-
-....// = ../
-```
+`.././` = `../`  
+`....//` = `../`  
 
 ## SSRF
 
