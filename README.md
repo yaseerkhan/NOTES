@@ -458,7 +458,7 @@ This is sample payload we will put in the file that we will be uploading
 ```
 ## RCE
 Command Separatos:  
- ;    &    &&    |     ||  
+ `;` `&` `&&` `|` `||`  
  
 eg:
 ```
