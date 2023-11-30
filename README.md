@@ -1,12 +1,12 @@
 # NOTES
 STUDY MATERIAL >.&lt;
 
-+ [Uncategorized](#uncategorized)
-+ [SERVICES](#services)
-+ [Tools](#tools)
-  - [Uncategorized Tools](#uncat-tools)
-    * [SNMP WALK](#snmp-walk)
-  - [Network Scanning](#network-scanning)
+- [Uncategorized](#uncategorized)
+- [SERVICES](#services)
+- [Tools](#tools)
+  * [Uncategorized Tools](#uncat-tools)
+    + [SNMP WALK](#snmp-walk)
+  * [Network Scanning](#network-scanning)
     * [NMAP](#nmap)
   - [WEB DIRECTORY SCANNING](#web-dir-scan) 
     * [GOBUSTER](#gobuster)
